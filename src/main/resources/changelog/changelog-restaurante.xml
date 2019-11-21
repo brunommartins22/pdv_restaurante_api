@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="1" author="adam"   runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">select count(*) from seguranca.sistema where id = 1</sqlCheck>
+        </preConditions>
+        <sql splitStatements="true" dbms="postgresql">
+            INSERT INTO
+            seguranca.sistema (id, dominio_grupo_sistema,nome_sistema)
+            VALUES (6, 'PDVRESTAURANTE', 'PdvRestaurante');
+        </sql>
+    </changeSet>
+
+    <changeSet id="2" author="joao"   runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">select count(*) from seguranca.empresa where id = 1</sqlCheck>
+        </preConditions>
+        <sql splitStatements="true" dbms="postgresql">
+            INSERT INTO
+            seguranca.empresa (id, razao_social, cnpj_cpf, ie_rg, tipo_pessoa, rgcodusu, rgusuario, rgdata, rgevento)
+            VALUES (1, 'TESTE', '00.000.000/0000-00', '0', 'JURIDICA', 1, 'INTER', now(), 1);
+        </sql>
+    </changeSet>
+    
+    <changeSet id="add contrato" author="bruno" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">select count(*) from seguranca.contrato where id = 1</sqlCheck>
+        </preConditions>
+         <sql splitStatements="true" dbms="postgresql">
+            INSERT INTO
+            seguranca.contrato (id, empresa_id,sistema_id)
+            VALUES (1, 1, 6);
+        </sql>
+    </changeSet>
+
+    
+<!-- Verificar faixa de id do sistema antes de atrelar permissoes
+    Syscontabil: de 1 a 1000
+    Passagem: de 1001 a 2000
+    Erp: de 2001 a 3000
+    PDV Restaurante: de 3001 a 4000
+-->
+    <changeSet id="4" author="adam"   runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">select count(*) from seguranca.permissao_sistema where id = 1</sqlCheck>
+        </preConditions>
+        <sql splitStatements="true" dbms="postgresql">
+            --
+            -- TOC entry 2301 (class 0 OID 42598)
+            -- Dependencies: 185
+            -- Data for Name: permissao_sistema; Type: TABLE DATA; Schema: seguranca; Owner: interage
+            --
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1', 6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.01', 6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.01.01', 6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.01.02', 6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.01.03', 6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.02', 6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.02.01', 6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.02.02', 6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.02.03', 6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.03', 6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.03.01', 6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.03.02', 6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.03.03', 6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.03.04', 6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.04', 6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.04.01', 6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.04.02', 6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.04.03', 6);
+	    INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.06',6);
+	    INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.06.01',6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.06.02',6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.06.03',6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.07',6);
+	    INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.07.01',6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.07.02',6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.07.03',6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.08',6);
+	    INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.08.01',6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.08.02',6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.08.03',6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.09',6);
+	    INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.09.01',6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.09.02',6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.09.03',6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.10',6);
+	    INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.10.01',6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.10.02',6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.10.03',6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.11',6);
+	    INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.11.01',6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.11.02',6);
+            INSERT INTO seguranca.permissao_sistema VALUES (nextval('seguranca.seq_permissao_sistema'), '1.11.03',6);
+        </sql>
+    </changeSet>
+
+    
+</databaseChangeLog>

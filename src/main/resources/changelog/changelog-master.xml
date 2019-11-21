@@ -6,6 +6,7 @@
     
     
     <include file="/changelog/changelog-seguranca.xml"/>
+    <include file="/changelog/changelog-restaurante.xml"/>
     
     
     

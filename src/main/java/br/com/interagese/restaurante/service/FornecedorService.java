@@ -5,8 +5,14 @@
  */
 package br.com.interagese.restaurante.service;
 
+import br.com.interagese.erplibrary.AtributoPadrao;
+import br.com.interagese.erplibrary.Utils;
 import br.com.interagese.padrao.rest.util.PadraoService;
+import br.com.interagese.restaurantemodel.models.Endereco;
+
 import br.com.interagese.restaurantemodel.models.Fornecedor;
+import java.util.Date;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,4 +22,35 @@ import org.springframework.stereotype.Service;
 @Service
 public class FornecedorService extends PadraoService <Fornecedor> {
     
+    @Override
+    public List<Fornecedor> findRange(String complementoConsulta, int apartirDe, int quantidade, String ordernacao) {
+        List<Fornecedor> result = super.findRange(complementoConsulta, apartirDe, quantidade, ordernacao); //To change body of generated methods, choose Tools | Templates.
+        result.forEach((fornecedor) -> {
+            if (fornecedor.getPessoa() != null) {
+                fornecedor.getPessoa().setNomePessoa(fornecedor.getPessoa().getNomePessoa());
+            } else {
+                fornecedor.getPessoa().setNomePessoa("");
+            }
+        });
+        return result;
+    }
+    
+    @Override
+    public Fornecedor create(Fornecedor obj) throws Exception {
+        try {
+            setID(obj);
+
+            obj.getAtributoPadrao().setDataAlteracao(new Date());
+            obj.getPessoa().setAtributoPadrao(obj.getAtributoPadrao());
+            
+            for( Endereco end: obj.getPessoa().getListEndereco()) {
+                end.setAtributoPadrao(obj.getAtributoPadrao());
+            }
+            em.persist(obj);
+
+            return obj;
+        } catch (IllegalArgumentException ex) {
+            return null;
+        }
+    }
 }

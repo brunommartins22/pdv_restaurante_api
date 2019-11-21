@@ -32,6 +32,7 @@ public class DepartamentoService extends PadraoService<Departamento> {
         return result;
     }
     
+    @Override
     public String getWhere (String complementoConsulta) {
         if(complementoConsulta == null || complementoConsulta.isEmpty()){
             return complementoConsulta;

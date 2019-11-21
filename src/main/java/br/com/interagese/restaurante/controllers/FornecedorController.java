@@ -25,5 +25,6 @@ public class FornecedorController extends PadraoController <Fornecedor> {
     @Autowired
     public FornecedorService service;
     
+       
     
 }

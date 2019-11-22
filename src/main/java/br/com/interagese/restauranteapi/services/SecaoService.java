@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.interagese.restaurante.service;
+package br.com.interagese.restauranteapi.services;
 
 import br.com.interagese.padrao.rest.util.PadraoService;
 import br.com.interagese.restaurantemodel.models.Secao;

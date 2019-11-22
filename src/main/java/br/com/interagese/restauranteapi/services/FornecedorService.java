@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.interagese.restaurante.service;
+package br.com.interagese.restauranteapi.services;
 
 import br.com.interagese.erplibrary.AtributoPadrao;
 import br.com.interagese.erplibrary.Utils;

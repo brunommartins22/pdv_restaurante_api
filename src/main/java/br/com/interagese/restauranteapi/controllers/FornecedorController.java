@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.interagese.restaurante.controllers;
+package br.com.interagese.restauranteapi.controllers;
 
 import br.com.interagese.padrao.rest.util.IsServiceDefault;
 import br.com.interagese.padrao.rest.util.PadraoController;
-import br.com.interagese.restaurante.service.FornecedorService;
+import br.com.interagese.restauranteapi.services.FornecedorService;
 import br.com.interagese.restaurantemodel.models.Fornecedor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

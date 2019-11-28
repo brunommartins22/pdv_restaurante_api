@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(path = "api/mesas")
-public class MesaController extends PadraoController<Mesa>{
-    
+public class MesaController extends PadraoController<Mesa> {
+
     @IsServiceDefault
     @Autowired
     private MesaService mesaService;
-    
+
+
+
 }

@@ -6,6 +6,7 @@
 package br.com.interagese.restauranteapi.services;
 
 import br.com.interagese.padrao.rest.util.PadraoService;
+import br.com.interagese.restaurantemodel.models.Cliente;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,6 +15,6 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class ClienteService extends PadraoService <ClienteService>{
+public class ClienteService extends PadraoService <Cliente>{
     
 }

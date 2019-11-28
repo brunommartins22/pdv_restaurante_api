@@ -5,11 +5,10 @@
  */
 package br.com.interagese.restauranteapi.services;
 
-import br.com.interagese.erplibrary.AtributoPadrao;
-import br.com.interagese.erplibrary.Utils;
+
 import br.com.interagese.padrao.rest.util.PadraoService;
 import br.com.interagese.restaurantemodel.models.Endereco;
-
+import br.com.interagese.restaurantemodel.models.Telefone;
 import br.com.interagese.restaurantemodel.models.Fornecedor;
 import java.util.Date;
 import java.util.List;
@@ -45,6 +44,10 @@ public class FornecedorService extends PadraoService <Fornecedor> {
             
             for( Endereco end: obj.getPessoa().getListEndereco()) {
                 end.setAtributoPadrao(obj.getAtributoPadrao());
+            }
+            
+            for ( Telefone tel: obj.getPessoa().getListTelefone()){
+                 tel.setAtributoPadrao(obj.getAtributoPadrao());
             }
             em.persist(obj);
 

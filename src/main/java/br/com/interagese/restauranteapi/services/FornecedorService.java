@@ -35,6 +35,14 @@ public class FornecedorService extends PadraoService <Fornecedor> {
     }
     
     @Override
+    public String getWhere (String complementoConsulta) {
+        if(complementoConsulta == null || complementoConsulta.isEmpty()){
+            return complementoConsulta;
+        }
+        return ("pessoa.nomePessoa like '%" + complementoConsulta +"%' ");
+    } 
+    
+    @Override
     public Fornecedor create(Fornecedor obj) throws Exception {
         try {
             setID(obj);
@@ -53,6 +61,30 @@ public class FornecedorService extends PadraoService <Fornecedor> {
 
             return obj;
         } catch (IllegalArgumentException ex) {
+            return null;
+        }
+    }
+    
+    @Override   
+     public Fornecedor update(Fornecedor obj) throws Exception {
+    try {
+            setID(obj);
+            
+            obj.getAtributoPadrao().setDataAlteracao(new Date());
+            obj.getPessoa().setAtributoPadrao(obj.getAtributoPadrao());
+
+        
+            for( Endereco end: obj.getPessoa().getListEndereco()) {
+                end.setAtributoPadrao(obj.getAtributoPadrao());
+            }
+            
+            for ( Telefone tel: obj.getPessoa().getListTelefone()){
+                 tel.setAtributoPadrao(obj.getAtributoPadrao());
+            }
+
+        em.merge(obj);
+        return obj;
+         } catch (IllegalArgumentException ex) {
             return null;
         }
     }
